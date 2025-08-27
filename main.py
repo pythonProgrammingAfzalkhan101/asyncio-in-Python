@@ -1,19 +1,16 @@
-import asyncio
+import asyncio  
 
-async def fn():
-    
-    print("one")
-    await asyncio.sleep(1)
-    await fn2()
-    print('four')
-    await asyncio.sleep(1)
-    print('five')
-    await asyncio.sleep(1)
+async def task_one():
+    print("Task one is stared")
+    await asyncio.sleep(2)
+    print("Task one is end")
 
-async def fn2():
+async def task_two():
+    print("Task Two is started")
     await asyncio.sleep(1)
-    print("two")
-    await asyncio.sleep(1)
-    print("three")
-    
-asyncio.run(fn())
+    print("Task two is end")
+
+async def main():
+    await asyncio.gather(task_one(),task_two())
+
+asyncio.run(main())
